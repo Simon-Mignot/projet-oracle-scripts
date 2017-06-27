@@ -6,10 +6,6 @@ DROP TABLE PAIEMENT;
 DROP TABLE FACTURE; 
 DROP TABLE DEVIS; 
 DROP TABLE RESERVATION; 
-
-ALTER TABLE SERVICE 
-DROP CONSTRAINT fk_service_serviceLangue;
-
 DROP TABLE SERVICELANGUE; 
 DROP TABLE SERVICE;
 DROP TABLE TYPESERVICE; 
@@ -92,10 +88,6 @@ CREATE TABLE SERVICELANGUE (
     CONSTRAINT fk_serviceLangue_service foreign key (id_serviceLangue) references SERVICE (id_service), 
     CONSTRAINT pk_serviceLangue PRIMARY KEY (id_serviceLangue) 
 ); 
- 
-ALTER TABLE SERVICE 
-ADD CONSTRAINT fk_service_serviceLangue 
-FOREIGN KEY (id_service) REFERENCES SERVICELANGUE(id_serviceLangue); 
  
 CREATE TABLE AVOIRDIFFERENTELANGUE ( 
     id_langue NUMBER(10) not null, 
