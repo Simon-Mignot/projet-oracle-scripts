@@ -32,7 +32,7 @@ CREATE TABLE UTILISATEUR (
     description_utilisateur VARCHAR2(250), 
     travail_utilisateur VARCHAR2(20), 
     pseudoLogin_utilisateur VARCHAR2(20), 
-    mdpLogin_utilisateur VARCHAR2(50), 
+    mdpLogin_utilisateur VARCHAR2(100), 
     langueDefaut_utilisateur NUMBER(10), 
     adresse_utilisateur VARCHAR2(50), 
     ville_utilisateur VARCHAR2(50), 
