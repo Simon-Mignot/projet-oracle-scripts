@@ -74,6 +74,7 @@ BEGIN
         InsertNouveauUtilisateur.pays_Utilisateur,
         InsertNouveauUtilisateur.timeZone_Utilisateur
       );
+      DBMS_OUTPUT.PUT_LINE('Enregistrement inséré avec succès dans la table Utilisateur');
     END IF;
 END;
 /

@@ -116,4 +116,36 @@ BEGIN
     INTO :new.id_paiement
     FROM DUAL;
 END;
+
+
+CREATE OR REPLACE TRIGGER PAIEMENTInsert
+  BEFORE INSERT ON PAIEMENT FOR EACH ROW
+BEGIN
+  SELECT PAIEMENTSequence.NEXTVAL
+    INTO :new.id_paiement
+    FROM DUAL;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER RESERVATIONTaken
+  AFTER INSERT ON RESERVATION FOR EACH ROW
+  
+  DECLARE 
+  existeOrdre number:=0;
+  existeDevis number:=0;
+BEGIN
+    Select count(*) into existeOrdre from ORDREDEMISSION where idReservation_ordreDeMission = :new.ID_RESERVATION;
+    
+    Select count(*) into existeDevis from DEVIS where idReservation_devis = :new.ID_RESERVATION;
+    
+    IF (existeOrdre > 0) AND (existeDevis > 0) THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Ordre et Devis déjà existant');
+    ELSE
+        INSERT INTO ORDREDEMISSION(IDRESERVATION_ORDREDEMISSION, VALIDEPRESTA_ORDREDEMISSION, FICHIERPRESTA_ORDREDEMISSION) VALUES(:new.ID_RESERVATION, 0, EMPTY_BLOB());
+        INSERT INTO DEVIS(IDRESERVATION_DEVIS, VALIDE_DEVIS, FICHIER_DEVIS) VALUES(:new.ID_RESERVATION, 0, EMPTY_BLOB());
+    
+        DBMS_OUTPUT.PUT_LINE('Enregistrement inséré avec succès dans les tables OrdreDeMission et Devis');
+    END IF;
+END;
 /
