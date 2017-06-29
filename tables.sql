@@ -74,7 +74,7 @@ CREATE TABLE SERVICE (
     prix_service NUMBER(10), 
     numeroTelephone_service VARCHAR2(20), 
     typeDevise_service NUMBER(10), 
-    pays_service NUMBER(10), 
+    pays_service VARCHAR2(10), 
     CONSTRAINT fk_service_utilisateur foreign key (idUtilisateur_service) references UTILISATEUR (id_utilisateur), 
     CONSTRAINT fk_service_typeService foreign key (type_service) references TYPESERVICE (id_typeService), 
     CONSTRAINT fk_service_typeDevise foreign key (typeDevise_service) references TYPEDEVISE (id_typeDevise), 
@@ -85,6 +85,7 @@ CREATE TABLE SERVICELANGUE (
     id_serviceLangue NUMBER(10) not null, 
     langueUtilisateur_service NUMBER(10) not null, 
     CONSTRAINT fk_serviceLangue_service foreign key (id_serviceLangue) references SERVICE (id_service), 
+    CONSTRAINT fk_serviceLangue_langue foreign key (langueUtilisateur_service) references LANGUE (id_langue), 
     CONSTRAINT pk_serviceLangue PRIMARY KEY (id_serviceLangue) 
 ); 
  

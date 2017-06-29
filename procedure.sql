@@ -91,7 +91,7 @@ CALL InsertNouveauUtilisateur
     'Banquier',
     'jeangab',
     '6d11b39b108caac82c684371d719eceb29c180ecffa7be659e2c231ef08492a3',
-    63,
+    1,
     'Villa del Pachino',
     'Paris',
     '79021',
